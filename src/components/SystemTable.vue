@@ -182,15 +182,16 @@ export default {
       return Math.ceil(this.dataList.length / this.itemsPerPage);
     },
   },
-  methods: {
-    changePage(delta) {
-      const newPage = this.currentPage + delta;
-      this.showConfirmModal = false; /* 翻頁時關閉 */
-    },
-    changePageTo(page) {
-      this.currentPage = page;
-      this.showConfirmModal = false;
-    },
+ methods: {
+  changePage(delta) {
+    const newPage = this.currentPage + delta;
+    this.currentPage = Math.min(Math.max(newPage, 1), this.totalPages);
+    this.showConfirmModal = false; 
+  },
+  changePageTo(page) {
+    this.currentPage = page;
+    this.showConfirmModal = false; /* 翻頁delete 視窗消失 */
+  },
 
 
     toggleEditMode(index) {
